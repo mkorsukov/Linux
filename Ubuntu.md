@@ -35,6 +35,9 @@ clear && find $HOME -name "*.log" -type f -exec rm {} \;
 ## GNOME
 
 ```sh
+gsettings set org.gnome.mutter center-new-windows true
+gsettings set org.gnome.desktop.background show-desktop-icons false
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 gsettings set org.gnome.desktop.screensaver restart-enabled true
 ```
 
@@ -43,4 +46,30 @@ gsettings set org.gnome.desktop.screensaver restart-enabled true
 ```sh
 curl -L https://dot.net/v1/dotnet-install.sh -o dotnet-install.sh
 ./dotnet-install.sh --version latest --install-dir /usr/lib/dotnet
+```
+
+## Disable access timestamps
+
+```sh
+sudo nano /etc/fstab
+```
+
+Example of using `noatime` and `nodiratime`.
+
+```
+/dev/nvme0n1p2 / ext4 defaults,noatime,nodiratime 0 1
+```
+
+## Temp drives
+
+Create directory `/mnt/ram`.
+
+```sh
+sudo nano /etc/fstab
+```
+Add lines:
+
+```
+tmpfs /tmp tmpfs rw,nosuid,nodev,noatime,nodiratime,size=4096M,mode=1777 0 0
+tmpfs /mnt/ram tmpfs rw,nosuid,nodev,noatime,nodiratime,size=16384M,x-gvfs-hide 0 0
 ```
