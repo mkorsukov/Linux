@@ -123,14 +123,14 @@ sudo apt install curl
 
 # Archiver
 sudo apt install file-roller
+
+# Media codecs and fonts
+sudo apt install ubuntu-restricted-extras -y
 ```
 
 ## Add software
 
 ```sh
-# Media codecs and fonts
-sudo apt install ubuntu-restricted-extras -y
-
 # Google Chrome
 wget -O ./google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install ./google-chrome.deb
@@ -147,4 +147,4 @@ sudo apt update
 sudo apt install firefox-esr -y
 ```
 
-# https://ubuntuhandbook.org/index.php/2026/04/top-things-to-do-after-installed-ubuntu-26-04-lts
+https://ubuntuhandbook.org/index.php/2026/04/top-things-to-do-after-installed-ubuntu-26-04-lts
