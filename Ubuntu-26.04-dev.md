@@ -51,5 +51,12 @@ sudo nano /etc/sysctl.conf
 ## Clean log files
 
 ```sh
+# Any
 clear && find $HOME -name "*.log" -type f -exec rm {} \;
+
+# VS Code
+rm -rf ~/.config/Code/logs
+
+# Azure Data Studio
+rm -rf ~/.config/azuredatastudio/logs
 ```
