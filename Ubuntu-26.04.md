@@ -13,6 +13,18 @@ sudo nano /etc/fstab
 # /dev/nvme0n1p2 / ext4 defaults,noatime,nodiratime 0 1
 ```
 
+## Disable IPv6
+
+```sh
+sudo nano /etc/sysctl.d/99-disable-ipv6.conf
+
+# net.ipv6.conf.all.disable_ipv6 = 1
+# net.ipv6.conf.default.disable_ipv6 = 1
+# net.ipv6.conf.lo.disable_ipv6 = 1
+
+sudo sysctl --system
+```
+
 ## Set log size
 
 ```sh

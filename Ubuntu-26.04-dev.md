@@ -44,8 +44,12 @@ curl -L https://dot.net/v1/dotnet-install.sh -o dotnet-install.sh
 
 ```sh
 sudo nano /etc/sysctl.conf
-# fs.inotify.max_user_instances=512
-# fs.inotify.max_user_watches=524288
+
+#fs.inotify.max_user_instances=1024
+#fs.inotify.max_user_watches=524288
+#fs.inotify.max_queued_events=32768
+
+sudo sysctl --system
 ```
 
 ## Clean log files
