@@ -108,6 +108,30 @@ sudo apt remove --purge update-notifier -y
 sudo apt autoremove --purge -y
 ```
 
+## Disable automatic updates
+
+```sh
+sudo systemctl disable --now apt-daily.timer
+sudo systemctl disable --now apt-daily-upgrade.timer
+sudo systemctl mask apt-daily.timer
+sudo systemctl mask apt-daily-upgrade.timer
+
+sudo systemctl stop apt-daily.service apt-daily-upgrade.service
+sudo systemctl mask apt-daily.service apt-daily-upgrade.service
+
+sudo systemctl disable --now unattended-upgrades.service
+sudo systemctl mask unattended-upgrades.service
+
+sudo apt remove unattended-upgrades
+
+sudo tee /etc/apt/apt.conf.d/20auto-upgrades >/dev/null <<'EOF'
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Download-Upgradeable-Packages "0";
+APT::Periodic::AutocleanInterval "0";
+APT::Periodic::Unattended-Upgrade "0";
+EOF
+```
+
 ## Disable unused services
 
 ```sh
