@@ -131,6 +131,27 @@ APT::Periodic::AutocleanInterval "0";
 APT::Periodic::Unattended-Upgrade "0";
 EOF
 ```
+## Disable unused timers
+
+```sh
+# Stop and disable the sysstat timers
+sudo systemctl disable --now sysstat-collect.timer sysstat-rotate.timer sysstat-summary.timer
+
+# Stop and disable the news fetcher
+sudo systemctl disable --now motd-news.timer
+
+# Stop and disable the legacy cron compatibility timer
+sudo systemctl disable --now anacron.timer
+
+# Mask them so they cannot be accidentally restarted by other packages
+sudo systemctl mask sysstat-collect.timer sysstat-rotate.timer sysstat-summary.timer motd-news.timer anacron.timer
+
+# Disable and stop the optional timers
+sudo systemctl disable --now apport-autoreport.timer ua-timer.timer update-notifier-motd.timer
+
+# Mask them to keep them disabled
+sudo systemctl mask apport-autoreport.timer ua-timer.timer update-notifier-motd.timer
+```
 
 ## Disable unused services
 
