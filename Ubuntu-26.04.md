@@ -135,22 +135,16 @@ EOF
 
 ```sh
 # Stop and disable the sysstat timers
-sudo systemctl disable --now sysstat-collect.timer sysstat-rotate.timer sysstat-summary.timer
-
-# Stop and disable the news fetcher
-sudo systemctl disable --now motd-news.timer
-
-# Stop and disable the legacy cron compatibility timer
-sudo systemctl disable --now anacron.timer
-
-# Mask them so they cannot be accidentally restarted by other packages
+sudo systemctl disable --now sysstat-collect.timer sysstat-rotate.timer sysstat-summary.timer motd-news.timer anacron.timer
 sudo systemctl mask sysstat-collect.timer sysstat-rotate.timer sysstat-summary.timer motd-news.timer anacron.timer
 
 # Disable and stop the optional timers
 sudo systemctl disable --now apport-autoreport.timer ua-timer.timer update-notifier-motd.timer
-
-# Mask them to keep them disabled
 sudo systemctl mask apport-autoreport.timer ua-timer.timer update-notifier-motd.timer
+
+# Disable man db
+sudo systemctl disable --now man-db.timer
+sudo systemctl mask man-db.timer
 ```
 
 ## Disable unused services
@@ -163,7 +157,7 @@ sudo chmod -x /usr/libexec/goa-daemon
 sudo systemctl disable --now fwupd-refresh.timer
 sudo systemctl disable --now fwupd-refresh.service
 sudo systemctl disable --now fwupd.service
-sudo systemctl disable NetworkManager-wait-online.service
+sudo systemctl disable --now NetworkManager-wait-online.service
 sudo systemctl disable --now systemd-binfmt.service
 sudo systemctl disable --now apport.service
 sudo systemctl disable --now gnome-remote-desktop.service
