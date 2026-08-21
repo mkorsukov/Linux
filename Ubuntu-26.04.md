@@ -16,13 +16,16 @@ sudo nano /etc/fstab
 ## Disable IPv6
 
 ```sh
-sudo nano /etc/sysctl.d/99-disable-ipv6.conf
+sudo nano /etc/sysctl.conf
 
 # net.ipv6.conf.all.disable_ipv6 = 1
 # net.ipv6.conf.default.disable_ipv6 = 1
 # net.ipv6.conf.lo.disable_ipv6 = 1
 
+sudo sysctl -p
 sudo sysctl --system
+
+cat /proc/sys/net/ipv6/conf/all/disable_ipv6
 ```
 
 ## Set log size
@@ -124,13 +127,14 @@ sudo systemctl mask unattended-upgrades.service
 
 sudo apt remove unattended-upgrades
 
-sudo tee /etc/apt/apt.conf.d/20auto-upgrades >/dev/null <<'EOF'
+sudo tee /etc/apt/apt.conf.d/20auto-upgrades >/dev/null << 'EOF'
 APT::Periodic::Update-Package-Lists "0";
 APT::Periodic::Download-Upgradeable-Packages "0";
 APT::Periodic::AutocleanInterval "0";
 APT::Periodic::Unattended-Upgrade "0";
 EOF
 ```
+
 ## Disable unused timers
 
 ```sh
