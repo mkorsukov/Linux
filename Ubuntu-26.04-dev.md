@@ -38,6 +38,10 @@ sudo apt-get install -y dotnet-sdk-10.0
 # Manual
 curl -L https://dot.net/v1/dotnet-install.sh -o dotnet-install.sh
 ./dotnet-install.sh --version latest --install-dir /usr/bin/dotnet
+
+# .NET 11
+sudo add-apt-repository ppa:dotnet/backports
+sudo apt install dotnet11
 ```
 
 ## Increase file watch limits
